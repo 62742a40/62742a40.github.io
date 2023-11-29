@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='找到两个已排序数列的中位数'>
+<title>4.Median of Two Sorted Arrays</title>
+
+<link rel='canonical' href='https://62742a40.github.io/coding/leetcode/4/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='4.Median of Two Sorted Arrays'>
+<meta property='og:description' content='找到两个已排序数列的中位数'>
+<meta property='og:url' content='https://62742a40.github.io/coding/leetcode/4/'>
+<meta property='og:site_name' content='随记 | note to Think'>
+<meta property='og:type' content='article'><meta property='article:section' content='Coding' /><meta property='article:tag' content='leetcode' /><meta property='article:tag' content='array' /><meta property='article:tag' content='binary search' /><meta property='article:tag' content='divide and conquer' /><meta property='article:published_time' content='2023-04-09T16:51:00&#43;00:00'/><meta property='article:modified_time' content='2023-04-09T16:51:00&#43;00:00'/><meta property='og:image' content='https://s.md3.cn/imgs/i/2023/11/14/6552526cc22fd.png' />
+<meta name="twitter:title" content="4.Median of Two Sorted Arrays">
+<meta name="twitter:description" content="找到两个已排序数列的中位数"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://s.md3.cn/imgs/i/2023/11/14/6552526cc22fd.png' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GSZF2BTH41"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GSZF2BTH41', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">随记 | note to Think</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/talktalk/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-weibo" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M19 14.127c0 3.073 -3.502 5.873 -8 5.873c-4.126 0 -8 -2.224 -8 -5.565c0 -1.78 .984 -3.737 2.7 -5.567c2.362 -2.51 5.193 -3.687 6.551 -2.238c.415 .44 .752 1.39 .749 2.062c2 -1.615 4.308 .387 3.5 2.693c1.26 .557 2.5 .538 2.5 2.742z" />
+  <path d="M15 4h1a5 5 0 0 1 5 5v1" />
+</svg>
+                
+                <span>侃侃</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#找到两个已排序数列的中位数httpsleetcodecomproblemsmedian-of-two-sorted-arrays"><a href="https://leetcode.com/problems/median-of-two-sorted-arrays/">找到两个已排序数列的中位数</a></a>
+      <ul>
+        <li><a href="#未完待续解递归方法">未完待续。。。解递归方法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/coding/leetcode/4/">
+                
+                    <img src="https://s.md3.cn/imgs/i/2023/11/14/6552526cc22fd.png" loading="lazy" alt="Featured image of post 4.Median of Two Sorted Arrays" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/leetcode/" >
+                leetcode
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/coding/leetcode/4/">4.Median of Two Sorted Arrays</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            找到两个已排序数列的中位数
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 09, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="找到两个已排序数列的中位数httpsleetcodecomproblemsmedian-of-two-sorted-arrays"><a class="link" href="https://leetcode.com/problems/median-of-two-sorted-arrays/"  target="_blank" rel="noopener"
+    >找到两个已排序数列的中位数</a></h2>
+<p>  给出两个已排序的数列 $nums1$ 和 $nums2$ ，两个数列长度分别为 $m$ 和 $n$ ，返回这两个数列的中位数。总体的时间复杂度应该是 $O(log(m+n))$ 。</p>
+<p>例1：</p>
+<pre tabindex="0"><code>输入：nums1 = [1,3], nums2 = [2]
+输出：2.00000
+解析：合并后数列为 [1,2,3]，中位数为 2。
+</code></pre><p>例2：</p>
+<pre tabindex="0"><code>输入：nums1 = [1,2], nums2 = [3,4]
+输出：2.50000
+解析：合并后数列为 [1,2,3,4]，中位数为（2 + 3）/ 2 = 2.5。
+</code></pre><p>约束条件：</p>
+<ul>
+<li><!-- raw HTML omitted --> $nums1.length == m$ <!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted --> $nums2.length == n$ <!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted --> $0 &lt;= m &lt;= 1000$<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->$0 &lt;= n &lt;= 1000$<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->$1 &lt;= m + n &lt;= 2000$<!-- raw HTML omitted --></li>
+<li><!-- raw HTML omitted -->$-106 &lt;= nums1[i], nums2[i] &lt;= 106$<!-- raw HTML omitted --></li>
+</ul>
+<hr>
+<p>一开始，写的代码比较直观，使用递归方法，<strong>一直移动边界，直到可以直接计算中位数</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">findMedianSortedArrays</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>nums1, <span style="color:#66d9ef">int</span> nums1Size, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>nums2, <span style="color:#66d9ef">int</span> nums2Size)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define get_cn(s, n)                                \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    do                                              \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    {                                               \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        if (n % 2 == 0)                             \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        {                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            return (s[n / 2] + s[n / 2 - 1]) / 2.0; \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        }                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        else                                        \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        {                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            return s[n / 2];                        \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        }                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    } while (0);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (nums1Size <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">get_cn</span>(nums2, nums2Size);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (nums2Size <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">get_cn</span>(nums1, nums1Size);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (nums1Size <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> nums2Size <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (nums1[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> nums2[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2.</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (nums1[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;=</span> nums2[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        nums2<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        nums2Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (nums2Size <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            nums1Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">get_cn</span>(nums1,nums1Size);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (nums1[nums1Size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> nums2[nums2Size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            nums1Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            nums2Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        nums1<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        nums1Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (nums1Size <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            nums2Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">get_cn</span>(nums2,nums2Size);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (nums1[nums1Size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> nums2[nums2Size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            nums1Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            nums2Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">findMedianSortedArrays</span>(nums1, nums1Size, nums2, nums2Size);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>后来把递归改为迭代，<strong>移动边界，直到满足计算条件</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">findMedianSortedArrays</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>nums1, <span style="color:#66d9ef">int</span> nums1Size, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>nums2, <span style="color:#66d9ef">int</span> nums2Size)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define get_cn(s, n)                                \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    do                                              \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    {                                               \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        if (n % 2 == 0)                             \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        {                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            return (s[n / 2] + s[n / 2 - 1]) / 2.0; \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        }                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        else                                        \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        {                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            return s[n / 2];                        \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        }                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    } while (0);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (nums1Size <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> nums2Size <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> nums1Size <span style="color:#f92672">+</span> nums2Size <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (nums1[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;=</span> nums2[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            nums2<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            nums2Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            nums1<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            nums1Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (nums1[nums1Size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;=</span> nums2[nums2Size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            nums1Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            nums2Size<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (nums1Size<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">get_cn</span>(nums2,nums2Size);
+</span></span><span style="display:flex;"><span>    }<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (nums2Size<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">get_cn</span>(nums1,nums1Size);
+</span></span><span style="display:flex;"><span>    }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (nums1[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">+</span>nums2[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">/</span><span style="color:#ae81ff">2.0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3><b>提交截图(提交时，非现在状态)</b></h3><br>
+<iframe loading="lazy" src="https://s.md3.cn/dl/cdn/leetcode/4/ebd907bf-2826-4e76-8c29-24120c1afad0.html"
+    style="overflow:hidden" scrolling="no" width="100%" height="200px" name="CHANGETHIS" id="CHANGETHIS"
+    marginheight="0" frameborder="0"></iframe>
+<p><a href="https://s.md3.cn/dl/cdn/leetcode/4/2769c9c6-dccc-44f6-8179-51f754f257ba.html">完整信息点击此连接查看</a>
+</p>
+<p>上面的算法效率并不高，实际上分析下，其时间复杂度其实是 $O(m+n)$ 。题解要求的复杂度是 $O(log(m+n))$，也即要求不能逐个寻找，应该有某种类似于快速梯度下降的法子，这里实际上二分搜索应该可以考虑下。</p>
+<p>二分搜索的递归解法如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">findKthSortedArrays</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>nums1, <span style="color:#66d9ef">int</span> nums1Size, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>nums2, <span style="color:#66d9ef">int</span> nums2Size, <span style="color:#66d9ef">int</span> kth)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (nums1Size <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> nums2[kth <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (nums2Size <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> nums1[kth <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (kth <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> nums2[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&gt;</span> nums1[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">?</span> nums1[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">:</span> nums2[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> kth_left_half <span style="color:#f92672">=</span> kth <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> kth_right_half <span style="color:#f92672">=</span> kth <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (nums1Size <span style="color:#f92672">&lt;</span> kth_left_half)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        kth_left_half <span style="color:#f92672">=</span> nums1Size;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (nums2Size <span style="color:#f92672">&lt;</span> kth_right_half)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        kth_right_half <span style="color:#f92672">=</span> nums2Size;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (nums1[kth_left_half <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;=</span> nums2[kth_right_half <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        nums1 <span style="color:#f92672">+=</span> kth_left_half;
+</span></span><span style="display:flex;"><span>        nums1Size <span style="color:#f92672">-=</span> kth_left_half;
+</span></span><span style="display:flex;"><span>        kth <span style="color:#f92672">-=</span> kth_left_half;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (nums1[kth_left_half <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> nums2[kth_right_half <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        nums2 <span style="color:#f92672">+=</span> kth_right_half;
+</span></span><span style="display:flex;"><span>        nums2Size <span style="color:#f92672">-=</span> kth_right_half;
+</span></span><span style="display:flex;"><span>        kth <span style="color:#f92672">-=</span> kth_right_half;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">findKthSortedArrays</span>(nums1, nums1Size, nums2, nums2Size, kth);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">findMedianSortedArrays</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>nums1, <span style="color:#66d9ef">int</span> nums1Size, <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>nums2, <span style="color:#66d9ef">int</span> nums2Size)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// find (nums1Size+nums2Size)/2 th num
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> left_kth <span style="color:#f92672">=</span> (nums1Size<span style="color:#f92672">+</span>nums2Size<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> right_kth <span style="color:#f92672">=</span> (nums1Size<span style="color:#f92672">+</span>nums2Size<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">findKthSortedArrays</span>(nums1,nums1Size,nums2,nums2Size,left_kth)<span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">findKthSortedArrays</span>(nums1,nums1Size,nums2,nums2Size,right_kth))<span style="color:#f92672">/</span><span style="color:#ae81ff">2.0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3><b>提交截图(提交时，非现在状态)</b></h3><br>
+<iframe loading="lazy" src="https://s.md3.cn/dl/cdn/leetcode/4/919eb975-2fdd-4e39-9aff-2f72601986ae.html"
+    style="overflow:hidden" scrolling="no" width="100%" height="200px" name="CHANGETHIS" id="CHANGETHIS"
+    marginheight="0" frameborder="0"></iframe>
+<p><a href="https://s.md3.cn/dl/cdn/leetcode/4/80fa4504-5d63-4239-b0d7-c466ae307647.html">完整信息点击此连接查看</a>
+</p>
+<h3 id="未完待续解递归方法">未完待续。。。解递归方法</h3>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/leetcode/">leetcode</a>
+        
+            <a href="/tags/array/">array</a>
+        
+            <a href="/tags/binary-search/">binary search</a>
+        
+            <a href="/tags/divide-and-conquer/">divide and conquer</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/coding/leetcode/3/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s.md3.cn/imgs/i/2023/11/14/6552526cc22fd.png" loading="lazy" data-key="3" data-hash="https://s.md3.cn/imgs/i/2023/11/14/6552526cc22fd.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">3. Longest Substring Without Repeating Characters</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/coding/leetcode/32/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s.md3.cn/imgs/i/2023/11/14/6552526cc22fd.png" loading="lazy" data-key="32" data-hash="https://s.md3.cn/imgs/i/2023/11/14/6552526cc22fd.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">32.Longest Valid Parentheses</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/coding/leetcode/5/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s.md3.cn/imgs/i/2023/11/14/6552526cc22fd.png" loading="lazy" data-key="5" data-hash="https://s.md3.cn/imgs/i/2023/11/14/6552526cc22fd.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">5.Longest Palindromic Substring</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+<section>
+    <link href="https://cdn.bootcdn.net/ajax/libs/artalk/2.6.4/Artalk.css" rel="stylesheet">
+    <link href="/css/slider.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/artalk/2.6.4/Artalk.js"></script>
+    <p id="comment-message">请在评论前阅读我们的<a href="/privacy-policy/" target="_blank" rel="noopener noreferrer"
+            class="policy-link">评论政策</a></p>
+
+    <div class="comment-slide-box">
+        <div class="box-sm red"></div>
+        <div class="box-sm orange"></div>
+        <div class="box-sm yellow "></div>
+        <div class="box-sm green "></div>
+        <div class="box-sm blue "></div>
+        <div class="box-sm purple"></div>
+    </div>
+
+    
+    
+    <div id="artalk"></div>
+    
+    <script>
+        Artalk.init({
+            el: '#artalk',
+            server: 'https:\/\/artalk.opensl.life',
+            site: 'opensl',
+        })
+        
+        window.addEventListener("onColorSchemeChange", (e) => {
+            Artalk.setDarkMode(document.documentElement.dataset.scheme=="dark");
+        })
+
+    </script>
+</section>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2023 随记 | note to Think
+    </section>
+    
+    <section class="powerby">
+        
+            内容是由智能博客生成器生产 powered by ChatGGPTT <br/>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

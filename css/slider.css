@@ -1,0 +1,51 @@
+.comment-slide-box,
+.box {
+    display: flex;
+    width: 100%;
+    height: 8px;
+    margin: 5px 0px 60px 0px;
+}
+
+.comment-slide-box,
+.box-sm {
+    height: 8px;
+    margin: 0;
+    flex-grow: 1;
+    transition: all .8s ease-in-out;
+    cursor: pointer;
+}
+
+.comment-slide-box,
+.box-sm:hover {
+    flex-grow: 12;
+}
+
+.comment-slide-box,
+.red {
+    background-color: #FF5852;
+}
+
+.comment-slide-box,
+.orange {
+    background-color: #FF9000;
+}
+
+.comment-slide-box,
+.yellow {
+    background-color: #FFD300;
+}
+
+.comment-slide-box,
+.green {
+    background-color: #3DCD49;
+}
+
+.comment-slide-box,
+.blue {
+    background-color: #0089D7;
+}
+
+.comment-slide-box,
+.purple {
+    background-color: #9E44C4;
+}

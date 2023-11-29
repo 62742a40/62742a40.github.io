@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>深度学习备忘录 - 常看常新 on 随记 | note to Think</title>
+        <link>https://62742a40.github.io/coding/deep-learning/</link>
+        <description>Recent content in 深度学习备忘录 - 常看常新 on 随记 | note to Think</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language><atom:link href="https://62742a40.github.io/coding/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    </channel>
+</rss>

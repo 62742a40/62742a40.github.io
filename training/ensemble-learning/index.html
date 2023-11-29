@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='集成学习方法'>
+<title>ml Ensembles Methods</title>
+
+<link rel='canonical' href='https://62742a40.github.io/training/ensemble-learning/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='ml Ensembles Methods'>
+<meta property='og:description' content='集成学习方法'>
+<meta property='og:url' content='https://62742a40.github.io/training/ensemble-learning/'>
+<meta property='og:site_name' content='随记 | note to Think'>
+<meta property='og:type' content='article'><meta property='article:section' content='Tutorial' /><meta property='article:tag' content='machine learning' /><meta property='article:tag' content='”ensemble learning&#34;' /><meta property='article:published_time' content='2022-01-04T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-01-04T00:00:00&#43;00:00'/><meta property='og:image' content='https://s.md3.cn/imgs/i/2023/11/13/6552429483e37.jpg' />
+<meta name="twitter:title" content="ml Ensembles Methods">
+<meta name="twitter:description" content="集成学习方法"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://s.md3.cn/imgs/i/2023/11/13/6552429483e37.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GSZF2BTH41"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GSZF2BTH41', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">随记 | note to Think</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/talktalk/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-weibo" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M19 14.127c0 3.073 -3.502 5.873 -8 5.873c-4.126 0 -8 -2.224 -8 -5.565c0 -1.78 .984 -3.737 2.7 -5.567c2.362 -2.51 5.193 -3.687 6.551 -2.238c.415 .44 .752 1.39 .749 2.062c2 -1.615 4.308 .387 3.5 2.693c1.26 .557 2.5 .538 2.5 2.742z" />
+  <path d="M15 4h1a5 5 0 0 1 5 5v1" />
+</svg>
+                
+                <span>侃侃</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#集成学习总结">集成学习总结</a>
+      <ul>
+        <li><a href="#集合方法通常分为两类">集合方法通常分为两类</a></li>
+        <li><a href="#将来自不同模型的预测结合起来的三种最流行的方法是">将来自不同模型的预测结合起来的三种最流行的方法是</a></li>
+      </ul>
+    </li>
+    <li><a href="#bagging-方法">Bagging 方法</a>
+      <ul>
+        <li><a href="#本节所述的三种bagging模型如下">本节所述的三种bagging模型如下</a></li>
+        <li><a href="#bagging-方法使用实例">bagging 方法使用实例</a></li>
+      </ul>
+    </li>
+    <li><a href="#boosting-方法">Boosting 方法</a>
+      <ul>
+        <li><a href="#两种最常见的boosting集成机器学习算法是">两种最常见的boosting集成机器学习算法是</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/training/ensemble-learning/">
+                
+                    <img src="https://s.md3.cn/imgs/i/2023/11/13/6552429483e37.jpg" loading="lazy" alt="Featured image of post ml Ensembles Methods" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/tutorial/" >
+                tutorial
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/training/ensemble-learning/">ml Ensembles Methods</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            集成学习方法
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 04, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="集成学习总结">集成学习总结</h2>
+<p>本文译自<a class="link" href="https://github.com/Davisy/ML-Ensembles-Methods"  target="_blank" rel="noopener"
+    >ML-Ensembles-Methods</a>
+  集成方法的目标是将具有给定学习算法构建的几个基本estimator的预测结果结合起来，以改善单个estimator上的泛化能力和鲁棒性。对于组合的机器学习技术，它结合了几个基础模型以产生一个最佳预测或者说集合是将各种学习者（不同模型）组合在一起的艺术，以即使模型的稳定性和预测能力得到调整。</p>
+<h3 id="集合方法通常分为两类">集合方法通常分为两类</h3>
+<ol>
+<li>平均方法。其驱动原理是独立地建立几个估计量，然后对它们的预测进行平均。平均而言，由于其方差减小，组合估计通常比任何单一基估计都好。例子:Bagging方法，随机森林方法等。</li>
+<li>boosting方法，基本估计量是顺序建立的，每一个都试图减少组合估计量的偏差。其动机是将几个薄弱的模型组合成一个强大的集合。例如:AdaBoost，梯度树Boosting（GBDT, gradient boost decision tree）。</li>
+</ol>
+<h3 id="将来自不同模型的预测结合起来的三种最流行的方法是">将来自不同模型的预测结合起来的三种最流行的方法是</h3>
+<ol>
+<li>Bagging : 从训练数据集的不同子样本中构建多个模型(通常是相同类型的)。</li>
+<li>Boosting : 构建多个模型(通常是同一类型的)，其中每个模型都能学会修复链中先前模型的预测错误。</li>
+<li>Voting : 建立多个模型(通常是不同类型的)和简单的统计数据(如计算平均值)来组合预测。</li>
+</ol>
+<h2 id="bagging-方法">Bagging 方法</h2>
+<p>  自动聚合或Bagging，包括了：从你的训练数据集(带替换)中提取多个样本，并为每个样本训练一个模型。最终的输出预测是所有子模型预测的平均值。</p>
+<h3 id="本节所述的三种bagging模型如下">本节所述的三种bagging模型如下</h3>
+<ul>
+<li>Bagged Decision Trees : Bagging决策树算法在具有高方差的算法中表现最好。一个流行的例子是决策树，通常在没有修剪的情况下构建</li>
+<li>Random Forest : 训练数据集的随机森林样本被替换，但是树的构造方式降低了单个分类器之间的相关性。具体来说，不是在树的构造中贪婪地选择最好的拆分点，而是在每次拆分时只考虑一个随机的特征子集。</li>
+<li>Extra Trees : Bagging的另一种修改，其中随机树是由训练数据集的样本构建的。</li>
+</ul>
+<h3 id="bagging-方法使用实例">bagging 方法使用实例</h3>
+<iframe loading="lazy" src="https://s.md3.cn/dl/cdn/blog/Bagging-Machine-Learning-Algorithm.html" style="overflow:hidden"
+    scrolling="true" width="100%" height="1000px" name="CHANGETHIS" id="CHANGETHIS" marginheight="0"
+    frameborder="0"></iframe>
+<p><a href="https://s.md3.cn/dl/cdn/blog/Bagging-Machine-Learning-Algorithm.html">完整内容点击此连接查看</a></p>
+<h2 id="boosting-方法">Boosting 方法</h2>
+<p>  增强集成算法创建了一系列模型，这些模型试图在序列中纠正之前的模型的错误。模型创建后，可以根据其被证明的准确性进行预测，并将结果组合起来创建最终的输出预测。</p>
+<h3 id="两种最常见的boosting集成机器学习算法是">两种最常见的boosting集成机器学习算法是</h3>
+<ul>
+<li>AdaBoost : AdaBoost可能是第一个成功的增强集成算法。它的工作原理通常是根据分类的难易程度对数据集中的实例进行加权，从而允许算法在构建后续模型时更多更少地关注这些实例。</li>
+<li>Stochastic Gradient Boosting(最好的) : 随机梯度增强(也称为梯度增强机)是最复杂的集成技术之一。这种技术也被证明可能是通过集成来提高性能的最佳技术之一</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/machine-learning/">machine learning</a>
+        
+            <a href="/tags/ensemble-learning/">”ensemble learning&#34;</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+<section>
+    <link href="https://cdn.bootcdn.net/ajax/libs/artalk/2.6.4/Artalk.css" rel="stylesheet">
+    <link href="/css/slider.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/artalk/2.6.4/Artalk.js"></script>
+    <p id="comment-message">请在评论前阅读我们的<a href="/privacy-policy/" target="_blank" rel="noopener noreferrer"
+            class="policy-link">评论政策</a></p>
+
+    <div class="comment-slide-box">
+        <div class="box-sm red"></div>
+        <div class="box-sm orange"></div>
+        <div class="box-sm yellow "></div>
+        <div class="box-sm green "></div>
+        <div class="box-sm blue "></div>
+        <div class="box-sm purple"></div>
+    </div>
+
+    
+    
+    <div id="artalk"></div>
+    
+    <script>
+        Artalk.init({
+            el: '#artalk',
+            server: 'https:\/\/artalk.opensl.life',
+            site: 'opensl',
+        })
+        
+        window.addEventListener("onColorSchemeChange", (e) => {
+            Artalk.setDarkMode(document.documentElement.dataset.scheme=="dark");
+        })
+
+    </script>
+</section>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2023 随记 | note to Think
+    </section>
+    
+    <section class="powerby">
+        
+            内容是由智能博客生成器生产 powered by ChatGGPTT <br/>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

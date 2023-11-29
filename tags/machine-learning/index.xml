@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>machine learning on 随记 | note to Think</title>
+        <link>https://62742a40.github.io/tags/machine-learning/</link>
+        <description>Recent content in machine learning on 随记 | note to Think</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <lastBuildDate>Tue, 04 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://62742a40.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>ml Ensembles Methods</title>
+        <link>https://62742a40.github.io/training/ensemble-learning/</link>
+        <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://62742a40.github.io/training/ensemble-learning/</guid>
+        <description>&lt;img src="https://s.md3.cn/imgs/i/2023/11/13/6552429483e37.jpg" alt="Featured image of post ml Ensembles Methods" /&gt;&lt;h2 id=&#34;集成学习总结&#34;&gt;集成学习总结&lt;/h2&gt;
+&lt;p&gt;本文译自&lt;a class=&#34;link&#34; href=&#34;https://github.com/Davisy/ML-Ensembles-Methods&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ML-Ensembles-Methods&lt;/a&gt;
+  集成方法的目标是将具有给定学习算法构建的几个基本estimator的预测结果结合起来，以改善单个estimator上的泛化能力和鲁棒性。对于组合的机器学习技术，它结合了几个基础模型以产生一个最佳预测或者说集合是将各种学习者（不同模型）组合在一起的艺术，以即使模型的稳定性和预测能力得到调整。&lt;/p&gt;
+&lt;h3 id=&#34;集合方法通常分为两类&#34;&gt;集合方法通常分为两类&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;平均方法。其驱动原理是独立地建立几个估计量，然后对它们的预测进行平均。平均而言，由于其方差减小，组合估计通常比任何单一基估计都好。例子:Bagging方法，随机森林方法等。&lt;/li&gt;
+&lt;li&gt;boosting方法，基本估计量是顺序建立的，每一个都试图减少组合估计量的偏差。其动机是将几个薄弱的模型组合成一个强大的集合。例如:AdaBoost，梯度树Boosting（GBDT, gradient boost decision tree）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;将来自不同模型的预测结合起来的三种最流行的方法是&#34;&gt;将来自不同模型的预测结合起来的三种最流行的方法是&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Bagging : 从训练数据集的不同子样本中构建多个模型(通常是相同类型的)。&lt;/li&gt;
+&lt;li&gt;Boosting : 构建多个模型(通常是同一类型的)，其中每个模型都能学会修复链中先前模型的预测错误。&lt;/li&gt;
+&lt;li&gt;Voting : 建立多个模型(通常是不同类型的)和简单的统计数据(如计算平均值)来组合预测。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;bagging-方法&#34;&gt;Bagging 方法&lt;/h2&gt;
+&lt;p&gt;  自动聚合或Bagging，包括了：从你的训练数据集(带替换)中提取多个样本，并为每个样本训练一个模型。最终的输出预测是所有子模型预测的平均值。&lt;/p&gt;
+&lt;h3 id=&#34;本节所述的三种bagging模型如下&#34;&gt;本节所述的三种bagging模型如下&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Bagged Decision Trees : Bagging决策树算法在具有高方差的算法中表现最好。一个流行的例子是决策树，通常在没有修剪的情况下构建&lt;/li&gt;
+&lt;li&gt;Random Forest : 训练数据集的随机森林样本被替换，但是树的构造方式降低了单个分类器之间的相关性。具体来说，不是在树的构造中贪婪地选择最好的拆分点，而是在每次拆分时只考虑一个随机的特征子集。&lt;/li&gt;
+&lt;li&gt;Extra Trees : Bagging的另一种修改，其中随机树是由训练数据集的样本构建的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;bagging-方法使用实例&#34;&gt;bagging 方法使用实例&lt;/h3&gt;
+&lt;iframe loading=&#34;lazy&#34; src=&#34;https://s.md3.cn/dl/cdn/blog/Bagging-Machine-Learning-Algorithm.html&#34; style=&#34;overflow:hidden&#34;
+    scrolling=&#34;true&#34; width=&#34;100%&#34; height=&#34;1000px&#34; name=&#34;CHANGETHIS&#34; id=&#34;CHANGETHIS&#34; marginheight=&#34;0&#34;
+    frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href=&#34;https://s.md3.cn/dl/cdn/blog/Bagging-Machine-Learning-Algorithm.html&#34;&gt;完整内容点击此连接查看&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;boosting-方法&#34;&gt;Boosting 方法&lt;/h2&gt;
+&lt;p&gt;  增强集成算法创建了一系列模型，这些模型试图在序列中纠正之前的模型的错误。模型创建后，可以根据其被证明的准确性进行预测，并将结果组合起来创建最终的输出预测。&lt;/p&gt;
+&lt;h3 id=&#34;两种最常见的boosting集成机器学习算法是&#34;&gt;两种最常见的boosting集成机器学习算法是&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;AdaBoost : AdaBoost可能是第一个成功的增强集成算法。它的工作原理通常是根据分类的难易程度对数据集中的实例进行加权，从而允许算法在构建后续模型时更多更少地关注这些实例。&lt;/li&gt;
+&lt;li&gt;Stochastic Gradient Boosting(最好的) : 随机梯度增强(也称为梯度增强机)是最复杂的集成技术之一。这种技术也被证明可能是通过集成来提高性能的最佳技术之一&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

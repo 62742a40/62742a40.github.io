@@ -1,0 +1,112 @@
+.comment-container {
+	margin: 2em 0 1em;
+	text-align:center;
+	position:relative;
+}
+.comment-container  hr{
+	display:block;
+	/* position:absolute; */
+	border-top:2px solid #000;
+	z-index:-1;
+	left: 0px;
+	width:100%;
+	margin:0;
+}
+.comment-container hr.right{
+	left:auto;
+	right:0px;
+}
+.comment-container  hr#thread1{
+	top: 0.8em;
+	-webkit-animation: thread2 10s infinite;
+  	-moz-animation:    thread2 10s infinite;
+  	-o-animation:      thread2 10s infinite;
+  	animation:         thread2 10s infinite;	
+}
+.comment-container hr#thread2{
+	top:1.8em;
+	/*right:15px;*/
+	-webkit-animation: thread2 8s infinite;
+  	-moz-animation:    thread2 8s infinite;
+  	-o-animation:      thread2 8s infinite;
+  	animation:         thread2 8s infinite;	
+}
+.comment-container hr#thread3{
+	top:2.8em;
+/* 	right:15px; */
+	border-color:#b7bf33;
+	-webkit-animation: thread2 6s infinite;
+  	-moz-animation:    thread2 6s infinite;
+  	-o-animation:      thread2 6s infinite;
+  	animation:         thread2 6s infinite;	
+}
+.comment-container hr#thread4{
+	top:3.8em;
+	border-color:#b23836;
+	-webkit-animation: thread2 12s infinite;
+  	-moz-animation:    thread2 12s infinite;
+  	-o-animation:      thread2 12s infinite;
+  	animation:         thread2 12s infinite;	
+}
+.comment-container hr#thread5{
+	top:4.8em;
+	border-color:#3953a4;
+	-webkit-animation: thread2 16s infinite;
+  	-moz-animation:    thread2 16s infinite;
+  	-o-animation:      thread2 16s infinite;
+  	animation:         thread2 16s infinite;	
+}
+.comment-container hr#thread6{
+	top:5.8em;
+	-webkit-animation: thread2 6s infinite;
+  	-moz-animation:    thread2 6s infinite;
+  	-o-animation:      thread2 6s infinite;
+  	animation:         thread2 6s infinite;	
+}
+@media (min-width: 768px) {
+	.comment-container{
+		font-size:18px;
+	}
+  .comment-container  hr {
+    
+	border-width:3px;
+  }
+
+
+}
+
+@media (min-width: 992px) {
+  .comment-container  hr {
+    
+  }
+}
+
+@media (min-width: 1200px) {
+  .comment-container  hr {
+    
+  }
+}
+@-webkit-keyframes thread2 {
+	  0%   { width: 100%; }
+	  50% { width: 100%; }
+	  80% { width: 0px;}
+	  100%{ width:100%;}
+	}
+	@-moz-keyframes thread2 {
+	  0%   { width: 100%; }
+	  50% { width: 100%; }
+	  80% { width: 0px;}
+	  100%{ width:100%;}
+	}
+	@-o-keyframes thread2 {
+	  0%   { width: 100%; }
+	  50% { width: 100%; }
+	  80% { width: 0px;}
+	  100%{ width:100%;}
+	}
+	@keyframes thread2 {
+	  0%   { width: 100%; }
+	  50% { width: 100%; }
+	  80% { width: 0px;}
+	  100%{ width:100%;}
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Data Visualization on 随记 | note to Think</title>
+        <link>https://62742a40.github.io/tags/data-visualization/</link>
+        <description>Recent content in Data Visualization on 随记 | note to Think</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <lastBuildDate>Thu, 30 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://62742a40.github.io/tags/data-visualization/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Beginner&#39;s Guide to Audio Data</title>
+        <link>https://62742a40.github.io/training/beginner_s-guide-to-audio-data/</link>
+        <pubDate>Thu, 30 Dec 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://62742a40.github.io/training/beginner_s-guide-to-audio-data/</guid>
+        <description>&lt;img src="https://s.md3.cn/imgs/i/2023/11/13/65524295acf11.jpg" alt="Featured image of post Beginner&#39;s Guide to Audio Data" /&gt;&lt;h1 id=&#34;音频数据处理入门参考&#34;&gt;音频数据处理入门参考&lt;/h1&gt;
+&lt;p&gt;  本文参考自kaggle的一个文章，里面的代码所用的依赖版本过旧，可能不能正常运行，但总体思想路依然如此。&lt;/p&gt;
+&lt;iframe loading=&#34;lazy&#34; src=&#34;https://s.md3.cn/dl/cdn/blog/386fab79945c27b9fc7afe9b9f3c16d2.html&#34; style=&#34;overflow:hidden&#34;
+    scrolling=&#34;true&#34; width=&#34;100%&#34; height=&#34;1000px&#34; name=&#34;CHANGETHIS&#34; id=&#34;CHANGETHIS&#34; marginheight=&#34;0&#34;
+    frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href=&#34;https://s.md3.cn/dl/cdn/blog/386fab79945c27b9fc7afe9b9f3c16d2.html&#34;&gt;完整内容点击此连接查看&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;本文参考来源&#34;&gt;本文参考来源&lt;/h2&gt;
+&lt;p&gt;[1]. kaggle&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

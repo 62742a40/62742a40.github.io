@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>latex,jupyter on 随记 | note to Think</title>
+        <link>https://62742a40.github.io/tags/latexjupyter/</link>
+        <description>Recent content in latex,jupyter on 随记 | note to Think</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <lastBuildDate>Wed, 22 Dec 2021 15:00:00 +0000</lastBuildDate><atom:link href="https://62742a40.github.io/tags/latexjupyter/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>latex笔记</title>
+        <link>https://62742a40.github.io/training/note-of-latex/</link>
+        <pubDate>Wed, 22 Dec 2021 15:00:00 +0000</pubDate>
+        
+        <guid>https://62742a40.github.io/training/note-of-latex/</guid>
+        <description>&lt;img src="https://s.md3.cn/imgs/i/2023/11/13/65510574e06c2.jpg" alt="Featured image of post latex笔记" /&gt;&lt;p&gt;本文为内容摘取翻译，参考于以下链接：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/LintangWisesa/LaTeX-in-Markdown/blob/master/LatexFormula.ipynb&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;LaTeX in Markdown&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/dingran/latex-ipynb/blob/master/latex-cheatsheet.ipynb&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;LaTeX Cheatsheet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://gist.github.com/fomightez/207dc5e48dfe0ac4513a8ba7bcf2eb01&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;a note on LaTeX notebook&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[cheatsheet for Latex,using markdown for markup.][https://gist.github.com/LKS90/252ac41bd4a173be35b0]&lt;/p&gt;
+&lt;h1 id=&#34;description&#34;&gt;Description&lt;/h1&gt;
+&lt;p&gt;Cheatsheet for LaTex, using Markdown for markup. I use this with &lt;a class=&#34;link&#34; href=&#34;https://atom.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;atom.io&lt;/a&gt;
+and :package:&lt;code&gt;markdown-preview-plus&lt;/code&gt; to write math stuff. :package:&lt;code&gt;keyboard-localization&lt;/code&gt;
+is necessary when using an international layout (like [swiss] german).&lt;/p&gt;
+&lt;p&gt;Further Reference and source: &lt;a class=&#34;link&#34; href=&#34;ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf&#34; &gt;ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;example-expressions--functions&#34;&gt;Example expressions / functions&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;Input&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;Rendered&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;$a = b + c − d$&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$a = b + c − d$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;$\sqrt{?\frac{\pi}{2}}$&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$\sqrt{\frac{\pi}{2}}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;$y = a x_1^2 + b x_2 + c$&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$y = a x_1^2 + b x_2 + c$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;special-characters--symbols&#34;&gt;Special characters / Symbols&lt;/h1&gt;
+&lt;p&gt;###Latin:
+#####No dot:&lt;br&gt;
+&lt;code&gt;\imath&lt;/code&gt; $\rightarrow$ $\imath$,
+&lt;code&gt;\jmath&lt;/code&gt; $\rightarrow$ $\jmath$&lt;/p&gt;
+&lt;p&gt;#####Hat:&lt;br&gt;
+&lt;code&gt;\hat{\imath}&lt;/code&gt;  $\rightarrow$ $\hat{\imath}$,
+&lt;code&gt;\hat{\jmath}&lt;/code&gt;  $\rightarrow$ $\hat{\jmath}$&lt;/p&gt;
+&lt;p&gt;###Greek Letters:
+#####Capital:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Gamma&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;Γ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Delta&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∆&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Lambda&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;Λ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Phi&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;Φ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Pi&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;Π&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Psi&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;Ψ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Sigma&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;Σ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Theta&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;Θ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Upsilon&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;Υ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Xi&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;Ξ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Omega&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;Ω&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;#####Lowercase:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\alpha&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;α&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\nu&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ν&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\beta&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;β&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\kappa&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;κ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\gamma&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;γ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\lambda&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;λ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\delta&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;δ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\mu&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;µ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\epsilon&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ϵ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\zeta&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ζ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\eta&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;η&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\theta&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;θ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\iota&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ι&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\xi&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ξ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\pi&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;π&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\rho&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ρ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\sigma&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;σ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\tau&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;τ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\upsilon&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;υ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\phi&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;φ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\chi&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;χ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\psi&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ψ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\omega&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ω&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;#####Other:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\digamma&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;ϝ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;varepsilon&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ε&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\varkappa&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;ϰ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\varphi&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ϕ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\varpi&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;ϖ&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\varrho&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ϱ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\varsigma&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;ς&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\vartheta&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;ϑ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\eth&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;ð&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\hbar&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$\hbar$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;###Other:
+####Other Symbols&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\partial&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;∂&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\infty&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∞&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\wedge&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;∧&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\vee&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∨&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\neg&lt;/code&gt; &lt;code&gt;\not&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;¬&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\bot&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;⊥&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\top&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;⊤&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\nabla&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;∇&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\varnothing&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∅&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\angle&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;∠&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\measuredangle&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∡&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\surd&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;√&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\forall&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∀&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\exists&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;∃&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\nexists&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∄&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;####Relational Symbols&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\hookrightarrow&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;↪&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Rightarrow&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;⇒&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\rightarrow&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;→&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\Leftrightarrow&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;⇔&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\nrightarrow&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;↛&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\mapsto&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$\mapsto$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\geq&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;≥&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\leq&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;≤&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\equiv&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;≡&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\sim&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∼&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\gg&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;≫&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\ll&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;≪&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\subset&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;⊂&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\subseteq&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;⊆&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\in&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;∈&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\notin&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∉&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\mid&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;$\mid$&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\propto&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∝&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\perp&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;⊥&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt; \parallel&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∥&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\vartriangle&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;$\vartriangle$&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;####Binary operators&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\wedge&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;∧&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\vee&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;∨&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\neg``\not&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;¬&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;####Cumulative operators&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;LaTex&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\int&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;∫&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\iint&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$\iint$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\iiint&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;$\iiint$&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\idotsint&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$\idotsint$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\prod&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;$\prod$&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\sum&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$\sum$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\bigcup&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;$\bigcup$&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;&lt;code&gt;\bigcap&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$\bigcap$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;####Named operators
+$\arccos$,
+$\arcsin$,
+$\arctan$,
+$\arg$,
+$\cos$,
+$\cosh$,
+$\cot$,
+$\coth$,
+$\deg$,
+$\det$,
+$\dim$,
+$\exp$,
+$\gcd$,
+$\hom$,
+$\inf$,
+$\injlim$,
+$\lg$,
+$\lim$,
+$\liminf$,
+$\limsup$,
+$\ln$,
+$\log$,
+$\max$,
+$\min$,
+$\Pr$,
+$\projlim$,
+$\sec$,
+$\sin$,
+$\sinh$,
+$\sup$&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

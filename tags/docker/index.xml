@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>docker on 随记 | note to Think</title>
+        <link>https://62742a40.github.io/tags/docker/</link>
+        <description>Recent content in docker on 随记 | note to Think</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <lastBuildDate>Tue, 27 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://62742a40.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>容器中的root用户和密码</title>
+        <link>https://62742a40.github.io/training/non-root-container-guide/</link>
+        <pubDate>Tue, 27 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://62742a40.github.io/training/non-root-container-guide/</guid>
+        <description>&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.baeldung.com/ops/root-user-password-docker-container&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;本文翻译于 &amp;ldquo;Root User and Password Inside a Docker Container&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我们常使用root权限打开docker容器，显然这存在着一定的安全性问题。本文将讨论如何使用non-root用户创建docker镜像，来确保一些资源的安全性。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Docker&#34; data-lang=&#34;Docker&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; ubuntu:16.04&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; apt-get update &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; useradd -m john&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;USER&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; john&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;CMD&lt;/span&gt; /bin/bash&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;上面的例子创建了一个非root用户的镜像，正常启动后，进入容器即以john用户身份登录，此时使用包管理器安装软件包则会报出权限不足错误，需要切换至root用户。当你在烦恼切换时提示需要你输入root账户的密码时，有一个简单的方式可以直接以root方式登陆，那就是使用下面的命令。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker exec -it -u &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; container_name bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当然你也可以使用下面的命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker exec -it -u root container_name bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果说，你一定要在容器中为非root用户指定特别权限，你也可以安装sudo命令。下面的例子创建了一个非root用户john，并授予其sudo权限&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-Docker&#34; data-lang=&#34;Docker&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;FROM&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; ubuntu:16.04&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; apt-get update &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get -y install sudo&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; useradd -m john &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;john:john&amp;#34;&lt;/span&gt; | chpasswd &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; adduser john sudo&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;USER&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; john&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;CMD&lt;/span&gt; /bin/bash&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

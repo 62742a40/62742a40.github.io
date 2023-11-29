@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on 随记 | note to Think</title>
+        <link>https://62742a40.github.io/articles/</link>
+        <description>Recent content in Posts on 随记 | note to Think</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <lastBuildDate>Wed, 15 Nov 2023 09:14:38 +0000</lastBuildDate><atom:link href="https://62742a40.github.io/articles/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>博客装修那些事</title>
+        <link>https://62742a40.github.io/articles/2023/11/%E5%8D%9A%E5%AE%A2%E8%A3%85%E4%BF%AE%E9%82%A3%E4%BA%9B%E4%BA%8B/</link>
+        <pubDate>Wed, 15 Nov 2023 09:14:38 +0000</pubDate>
+        
+        <guid>https://62742a40.github.io/articles/2023/11/%E5%8D%9A%E5%AE%A2%E8%A3%85%E4%BF%AE%E9%82%A3%E4%BA%9B%E4%BA%8B/</guid>
+        <description>&lt;img src="https://s.md3.cn/imgs/i/2023/11/13/65510571a2ac5.jpg" alt="Featured image of post 博客装修那些事" /&gt;&lt;p&gt;之前的博客一直在使用pelican生成，最近想切到hugo试试看。笔者这里列一些小问题，纯记录：&lt;/p&gt;
+&lt;h3 id=&#34;博客嵌入artalk评论并配置artalk自适应夜间模式&#34;&gt;博客嵌入artalk评论，并配置artalk自适应夜间模式&lt;/h3&gt;
+&lt;p&gt;artalk本身提供了&lt;code&gt;Artalk.setDarkMode&lt;/code&gt;接口，使得其可以监听页面的相关内存片段，自适应做出light、dark色彩变换。
+但其实这里存在一个问题那就是有的主题自带了切换白天、夜间模式的按钮，但切换时实际并没有改变artalk所监听的内存的值，这里提供了一个修改参考：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    window.&lt;span style=&#34;color:#a6e22e&#34;&gt;addEventListener&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;onColorSchemeChange&amp;#34;&lt;/span&gt;, (&lt;span style=&#34;color:#a6e22e&#34;&gt;e&lt;/span&gt;) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#a6e22e&#34;&gt;Artalk&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;setDarkMode&lt;/span&gt;(document.&lt;span style=&#34;color:#a6e22e&#34;&gt;documentElement&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;dataset&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;scheme&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dark&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        })
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;你需要把这个片段插入到artalk评论的&lt;code&gt;shortcode&lt;/code&gt;的&lt;code&gt;script&lt;/code&gt;内。其实关于这个修改，我也是改了好几版，才勉强把色彩同步过来，作为前端门外汉，改别人的前端项目真的是头痛呀。
+关于这个，更多的可以参考下面的一些帖子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://yleen.cc/archives/409.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Web适配深色模式自动跟随与手动切换的实践&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/ArtalkJS/Artalk/blob/master/ui/packages/artalk/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;artalk源码参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;gitea添加build-action-deploy-on-commit&#34;&gt;gitea添加build action: &lt;code&gt;deploy on commit&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;TODO&lt;/p&gt;
+&lt;h3 id=&#34;添加更多模版&#34;&gt;添加更多模版&lt;/h3&gt;
+&lt;p&gt;在archetypes目录下创建一个新的模版leetcode.md，方便后面直接使用模版生成系列文章。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ls -la archetypes/
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;total 16
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;drwxr-xr-x  2 fan users 4096 Nov 19 03:26 .
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;drwxr-xr-x 14 fan users 4096 Nov 19 01:49 ..
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;-rw-r--r--  1 fan users  102 Nov 12 10:04 default.md
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;-rw-r--r--  1 fan users  271 Nov 19 03:19 leetcode.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;leetcode.md文件内可以如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;---&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;title&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;description&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://xxxxx.png&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;slug&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{{ .File.ContentBaseName }}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;date&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{{ .Date }}&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;categories&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;leetcode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;tags&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;leetcode&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;-&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;-&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;series&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;leetcode&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;题解系列&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;math&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;draft&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;---&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这时，可以使用如下命令创建新的系列文章：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new -k leetcode  coding/leetcode/1887.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;参考：
+[1]. &lt;a class=&#34;link&#34; href=&#34;https://go.opensl.life/N3oNd&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://go.opensl.life/N3oNd&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>愿你，纯真而不欠闻达，善良而不失坚强...</title>
+        <link>https://62742a40.github.io/articles/2023/10/%E4%B8%BA%E8%BF%99%E7%89%87%E6%96%B0%E7%BB%BF%E7%A5%9D%E7%A6%8F/</link>
+        <pubDate>Sun, 29 Oct 2023 09:14:38 +0000</pubDate>
+        
+        <guid>https://62742a40.github.io/articles/2023/10/%E4%B8%BA%E8%BF%99%E7%89%87%E6%96%B0%E7%BB%BF%E7%A5%9D%E7%A6%8F/</guid>
+        <description>&lt;img src="https://62742a40.github.io/images/article-by-keqiang.jpg" alt="Featured image of post 愿你，纯真而不欠闻达，善良而不失坚强..." /&gt;&lt;blockquote&gt;
+    &lt;p&gt;纯真而不欠闻达，善良而不失坚强，把生命高举在尘俗之上，又溶化于社会之中，这应当是我们这一代的共同追求。&lt;/p&gt;&lt;span class=&#34;cite&#34;&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;李克强, &lt;/span&gt;&lt;a href=&#34;https://weibo.com/6327834974/NpPTPgHMF&#34;&gt;&lt;cite&gt;1982年1月10日，北大法律系77级毕业前夕临别赠言&lt;/cite&gt;&lt;/a&gt;&lt;/span&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://62742a40.github.io/images/handwritten-by-keqiang.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;纯真而不欠闻达，善良而不失坚强，把生命高举在尘俗之上，又溶化于社会之中，这应当是我们这一代的共同追求。&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='本文为内容摘取翻译，参考于以下链接： LaTeX in Markdown LaTeX Cheatsheet a note on LaTeX notebook [cheatsheet for Latex,using markdown for markup.][https://gist.github.com/LKS90/252ac41bd4a173be35b0] Description Cheatsheet for LaTex, using Markdown for markup. I use this with atom.io and :package:markdown-preview-plus to write math stuff. :package:keyboard-localization is necessary when using an international layout (like [swiss] german). Further Reference and source: ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf Example expressions / functions Input Rendered $a = b &#43; c − d$ $a = b &#43; c − d$ $\sqrt{?\frac{\pi}{2}}$ $\sqrt{\frac{\pi}{2}}$ $y = a x_1^2 &#43; b x_2 &#43; c$ $y = a x_1^2 &#43; b x_2 &#43; c$ Special characters / Symbols ###Latin: #####No dot: \imath $\rightarrow$ $\imath$, \jmath $\rightarrow$ $\jmath$ #####Hat: \hat{\imath} $\rightarrow$ $\hat{\imath}$, \hat{\jmath} $\rightarrow$ $\hat{\jmath}$ ###Greek Letters: #####Capital: LaTex LaTex \Gamma Γ \Delta ∆ \Lambda Λ'>
+<title>latex笔记</title>
+
+<link rel='canonical' href='https://62742a40.github.io/training/note-of-latex/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='latex笔记'>
+<meta property='og:description' content='本文为内容摘取翻译，参考于以下链接： LaTeX in Markdown LaTeX Cheatsheet a note on LaTeX notebook [cheatsheet for Latex,using markdown for markup.][https://gist.github.com/LKS90/252ac41bd4a173be35b0] Description Cheatsheet for LaTex, using Markdown for markup. I use this with atom.io and :package:markdown-preview-plus to write math stuff. :package:keyboard-localization is necessary when using an international layout (like [swiss] german). Further Reference and source: ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf Example expressions / functions Input Rendered $a = b &#43; c − d$ $a = b &#43; c − d$ $\sqrt{?\frac{\pi}{2}}$ $\sqrt{\frac{\pi}{2}}$ $y = a x_1^2 &#43; b x_2 &#43; c$ $y = a x_1^2 &#43; b x_2 &#43; c$ Special characters / Symbols ###Latin: #####No dot: \imath $\rightarrow$ $\imath$, \jmath $\rightarrow$ $\jmath$ #####Hat: \hat{\imath} $\rightarrow$ $\hat{\imath}$, \hat{\jmath} $\rightarrow$ $\hat{\jmath}$ ###Greek Letters: #####Capital: LaTex LaTex \Gamma Γ \Delta ∆ \Lambda Λ'>
+<meta property='og:url' content='https://62742a40.github.io/training/note-of-latex/'>
+<meta property='og:site_name' content='随记 | note to Think'>
+<meta property='og:type' content='article'><meta property='article:section' content='Tutorial' /><meta property='article:tag' content='latex,jupyter' /><meta property='article:published_time' content='2021-12-22T15:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-12-22T15:00:00&#43;00:00'/><meta property='og:image' content='https://s.md3.cn/imgs/i/2023/11/13/65510574e06c2.jpg' />
+<meta name="twitter:title" content="latex笔记">
+<meta name="twitter:description" content="本文为内容摘取翻译，参考于以下链接： LaTeX in Markdown LaTeX Cheatsheet a note on LaTeX notebook [cheatsheet for Latex,using markdown for markup.][https://gist.github.com/LKS90/252ac41bd4a173be35b0] Description Cheatsheet for LaTex, using Markdown for markup. I use this with atom.io and :package:markdown-preview-plus to write math stuff. :package:keyboard-localization is necessary when using an international layout (like [swiss] german). Further Reference and source: ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf Example expressions / functions Input Rendered $a = b &#43; c − d$ $a = b &#43; c − d$ $\sqrt{?\frac{\pi}{2}}$ $\sqrt{\frac{\pi}{2}}$ $y = a x_1^2 &#43; b x_2 &#43; c$ $y = a x_1^2 &#43; b x_2 &#43; c$ Special characters / Symbols ###Latin: #####No dot: \imath $\rightarrow$ $\imath$, \jmath $\rightarrow$ $\jmath$ #####Hat: \hat{\imath} $\rightarrow$ $\hat{\imath}$, \hat{\jmath} $\rightarrow$ $\hat{\jmath}$ ###Greek Letters: #####Capital: LaTex LaTex \Gamma Γ \Delta ∆ \Lambda Λ"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://s.md3.cn/imgs/i/2023/11/13/65510574e06c2.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GSZF2BTH41"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GSZF2BTH41', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">随记 | note to Think</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/talktalk/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-weibo" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M19 14.127c0 3.073 -3.502 5.873 -8 5.873c-4.126 0 -8 -2.224 -8 -5.565c0 -1.78 .984 -3.737 2.7 -5.567c2.362 -2.51 5.193 -3.687 6.551 -2.238c.415 .44 .752 1.39 .749 2.062c2 -1.615 4.308 .387 3.5 2.693c1.26 .557 2.5 .538 2.5 2.742z" />
+  <path d="M15 4h1a5 5 0 0 1 5 5v1" />
+</svg>
+                
+                <span>侃侃</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/training/note-of-latex/">
+                
+                    <img src="https://s.md3.cn/imgs/i/2023/11/13/65510574e06c2.jpg" loading="lazy" alt="Featured image of post latex笔记" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/training/note-of-latex/">latex笔记</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 22, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>本文为内容摘取翻译，参考于以下链接：</p>
+<ul>
+<li><a class="link" href="https://github.com/LintangWisesa/LaTeX-in-Markdown/blob/master/LatexFormula.ipynb"  target="_blank" rel="noopener"
+    >LaTeX in Markdown</a></li>
+<li><a class="link" href="https://github.com/dingran/latex-ipynb/blob/master/latex-cheatsheet.ipynb"  target="_blank" rel="noopener"
+    >LaTeX Cheatsheet</a></li>
+<li><a class="link" href="https://gist.github.com/fomightez/207dc5e48dfe0ac4513a8ba7bcf2eb01"  target="_blank" rel="noopener"
+    >a note on LaTeX notebook</a></li>
+</ul>
+<p>[cheatsheet for Latex,using markdown for markup.][https://gist.github.com/LKS90/252ac41bd4a173be35b0]</p>
+<h1 id="description">Description</h1>
+<p>Cheatsheet for LaTex, using Markdown for markup. I use this with <a class="link" href="https://atom.io/"  target="_blank" rel="noopener"
+    >atom.io</a>
+and :package:<code>markdown-preview-plus</code> to write math stuff. :package:<code>keyboard-localization</code>
+is necessary when using an international layout (like [swiss] german).</p>
+<p>Further Reference and source: <a class="link" href="ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf" >ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf</a></p>
+<h1 id="example-expressions--functions">Example expressions / functions</h1>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:right">Input</th>
+<th style="text-align:right">Rendered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>$a = b + c − d$</code></td>
+<td style="text-align:right">$a = b + c − d$</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>$\sqrt{?\frac{\pi}{2}}$</code></td>
+<td style="text-align:right">$\sqrt{\frac{\pi}{2}}$</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>$y = a x_1^2 + b x_2 + c$</code></td>
+<td style="text-align:right">$y = a x_1^2 + b x_2 + c$</td>
+</tr>
+</tbody>
+</table></div>
+<h1 id="special-characters--symbols">Special characters / Symbols</h1>
+<p>###Latin:
+#####No dot:<br>
+<code>\imath</code> $\rightarrow$ $\imath$,
+<code>\jmath</code> $\rightarrow$ $\jmath$</p>
+<p>#####Hat:<br>
+<code>\hat{\imath}</code>  $\rightarrow$ $\hat{\imath}$,
+<code>\hat{\jmath}</code>  $\rightarrow$ $\hat{\jmath}$</p>
+<p>###Greek Letters:
+#####Capital:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:right">LaTex</th>
+<th style="text-align:right"></th>
+<th style="text-align:right">LaTex</th>
+<th style="text-align:right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>\Gamma</code></td>
+<td style="text-align:right">Γ</td>
+<td style="text-align:right"><code>\Delta</code></td>
+<td style="text-align:right">∆</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\Lambda</code></td>
+<td style="text-align:right">Λ</td>
+<td style="text-align:right"><code>\Phi</code></td>
+<td style="text-align:right">Φ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\Pi</code></td>
+<td style="text-align:right">Π</td>
+<td style="text-align:right"><code>\Psi</code></td>
+<td style="text-align:right">Ψ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\Sigma</code></td>
+<td style="text-align:right">Σ</td>
+<td style="text-align:right"><code>\Theta</code></td>
+<td style="text-align:right">Θ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\Upsilon</code></td>
+<td style="text-align:right">Υ</td>
+<td style="text-align:right"><code>\Xi</code></td>
+<td style="text-align:right">Ξ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\Omega</code></td>
+<td style="text-align:right">Ω</td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table></div>
+<p>#####Lowercase:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:right">LaTex</th>
+<th style="text-align:right"></th>
+<th style="text-align:right">LaTex</th>
+<th style="text-align:right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>\alpha</code></td>
+<td style="text-align:right">α</td>
+<td style="text-align:right"><code>\nu</code></td>
+<td style="text-align:right">ν</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\beta</code></td>
+<td style="text-align:right">β</td>
+<td style="text-align:right"><code>\kappa</code></td>
+<td style="text-align:right">κ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\gamma</code></td>
+<td style="text-align:right">γ</td>
+<td style="text-align:right"><code>\lambda</code></td>
+<td style="text-align:right">λ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\delta</code></td>
+<td style="text-align:right">δ</td>
+<td style="text-align:right"><code>\mu</code></td>
+<td style="text-align:right">µ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\epsilon</code></td>
+<td style="text-align:right">ϵ</td>
+<td style="text-align:right"><code>\zeta</code></td>
+<td style="text-align:right">ζ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\eta</code></td>
+<td style="text-align:right">η</td>
+<td style="text-align:right"><code>\theta</code></td>
+<td style="text-align:right">θ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\iota</code></td>
+<td style="text-align:right">ι</td>
+<td style="text-align:right"><code>\xi</code></td>
+<td style="text-align:right">ξ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\pi</code></td>
+<td style="text-align:right">π</td>
+<td style="text-align:right"><code>\rho</code></td>
+<td style="text-align:right">ρ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\sigma</code></td>
+<td style="text-align:right">σ</td>
+<td style="text-align:right"><code>\tau</code></td>
+<td style="text-align:right">τ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\upsilon</code></td>
+<td style="text-align:right">υ</td>
+<td style="text-align:right"><code>\phi</code></td>
+<td style="text-align:right">φ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\chi</code></td>
+<td style="text-align:right">χ</td>
+<td style="text-align:right"><code>\psi</code></td>
+<td style="text-align:right">ψ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\omega</code></td>
+<td style="text-align:right">ω</td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table></div>
+<p>#####Other:</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:right">LaTex</th>
+<th></th>
+<th style="text-align:right">LaTex</th>
+<th style="text-align:right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>\digamma</code></td>
+<td>ϝ</td>
+<td style="text-align:right"><code>varepsilon</code></td>
+<td style="text-align:right">ε</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\varkappa</code></td>
+<td>ϰ</td>
+<td style="text-align:right"><code>\varphi</code></td>
+<td style="text-align:right">ϕ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\varpi</code></td>
+<td>ϖ</td>
+<td style="text-align:right"><code>\varrho</code></td>
+<td style="text-align:right">ϱ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\varsigma</code></td>
+<td>ς</td>
+<td style="text-align:right"><code>\vartheta</code></td>
+<td style="text-align:right">ϑ</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\eth</code></td>
+<td>ð</td>
+<td style="text-align:right"><code>\hbar</code></td>
+<td style="text-align:right">$\hbar$</td>
+</tr>
+</tbody>
+</table></div>
+<p>###Other:
+####Other Symbols</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:right">LaTex</th>
+<th></th>
+<th style="text-align:right">LaTex</th>
+<th style="text-align:right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>\partial</code></td>
+<td>∂</td>
+<td style="text-align:right"><code>\infty</code></td>
+<td style="text-align:right">∞</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\wedge</code></td>
+<td>∧</td>
+<td style="text-align:right"><code>\vee</code></td>
+<td style="text-align:right">∨</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\neg</code> <code>\not</code></td>
+<td>¬</td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\bot</code></td>
+<td>⊥</td>
+<td style="text-align:right"><code>\top</code></td>
+<td style="text-align:right">⊤</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\nabla</code></td>
+<td>∇</td>
+<td style="text-align:right"><code>\varnothing</code></td>
+<td style="text-align:right">∅</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\angle</code></td>
+<td>∠</td>
+<td style="text-align:right"><code>\measuredangle</code></td>
+<td style="text-align:right">∡</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\surd</code></td>
+<td>√</td>
+<td style="text-align:right"><code>\forall</code></td>
+<td style="text-align:right">∀</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\exists</code></td>
+<td>∃</td>
+<td style="text-align:right"><code>\nexists</code></td>
+<td style="text-align:right">∄</td>
+</tr>
+</tbody>
+</table></div>
+<p>####Relational Symbols</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:right">LaTex</th>
+<th></th>
+<th style="text-align:right">LaTex</th>
+<th style="text-align:right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>\hookrightarrow</code></td>
+<td>↪</td>
+<td style="text-align:right"><code>\Rightarrow</code></td>
+<td style="text-align:right">⇒</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\rightarrow</code></td>
+<td>→</td>
+<td style="text-align:right"><code>\Leftrightarrow</code></td>
+<td style="text-align:right">⇔</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\nrightarrow</code></td>
+<td>↛</td>
+<td style="text-align:right"><code>\mapsto</code></td>
+<td style="text-align:right">$\mapsto$</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\geq</code></td>
+<td>≥</td>
+<td style="text-align:right"><code>\leq</code></td>
+<td style="text-align:right">≤</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\equiv</code></td>
+<td>≡</td>
+<td style="text-align:right"><code>\sim</code></td>
+<td style="text-align:right">∼</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\gg</code></td>
+<td>≫</td>
+<td style="text-align:right"><code>\ll</code></td>
+<td style="text-align:right">≪</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\subset</code></td>
+<td>⊂</td>
+<td style="text-align:right"><code>\subseteq</code></td>
+<td style="text-align:right">⊆</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\in</code></td>
+<td>∈</td>
+<td style="text-align:right"><code>\notin</code></td>
+<td style="text-align:right">∉</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\mid</code></td>
+<td>$\mid$</td>
+<td style="text-align:right"><code>\propto</code></td>
+<td style="text-align:right">∝</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\perp</code></td>
+<td>⊥</td>
+<td style="text-align:right"><code> \parallel</code></td>
+<td style="text-align:right">∥</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\vartriangle</code></td>
+<td>$\vartriangle$</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>####Binary operators</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:right">LaTex</th>
+<th></th>
+<th style="text-align:right">LaTex</th>
+<th style="text-align:right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>\wedge</code></td>
+<td>∧</td>
+<td style="text-align:right"><code>\vee</code></td>
+<td style="text-align:right">∨</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\neg``\not</code></td>
+<td>¬</td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table></div>
+<p>####Cumulative operators</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:right">LaTex</th>
+<th></th>
+<th style="text-align:right">LaTex</th>
+<th style="text-align:right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><code>\int</code></td>
+<td>∫</td>
+<td style="text-align:right"><code>\iint</code></td>
+<td style="text-align:right">$\iint$</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\iiint</code></td>
+<td>$\iiint$</td>
+<td style="text-align:right"><code>\idotsint</code></td>
+<td style="text-align:right">$\idotsint$</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\prod</code></td>
+<td>$\prod$</td>
+<td style="text-align:right"><code>\sum</code></td>
+<td style="text-align:right">$\sum$</td>
+</tr>
+<tr>
+<td style="text-align:right"><code>\bigcup</code></td>
+<td>$\bigcup$</td>
+<td style="text-align:right"><code>\bigcap</code></td>
+<td style="text-align:right">$\bigcap$</td>
+</tr>
+</tbody>
+</table></div>
+<p>####Named operators
+$\arccos$,
+$\arcsin$,
+$\arctan$,
+$\arg$,
+$\cos$,
+$\cosh$,
+$\cot$,
+$\coth$,
+$\deg$,
+$\det$,
+$\dim$,
+$\exp$,
+$\gcd$,
+$\hom$,
+$\inf$,
+$\injlim$,
+$\lg$,
+$\lim$,
+$\liminf$,
+$\limsup$,
+$\ln$,
+$\log$,
+$\max$,
+$\min$,
+$\Pr$,
+$\projlim$,
+$\sec$,
+$\sin$,
+$\sinh$,
+$\sup$</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/latexjupyter/">latex,jupyter</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+<section>
+    <link href="https://cdn.bootcdn.net/ajax/libs/artalk/2.6.4/Artalk.css" rel="stylesheet">
+    <link href="/css/slider.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/artalk/2.6.4/Artalk.js"></script>
+    <p id="comment-message">请在评论前阅读我们的<a href="/privacy-policy/" target="_blank" rel="noopener noreferrer"
+            class="policy-link">评论政策</a></p>
+
+    <div class="comment-slide-box">
+        <div class="box-sm red"></div>
+        <div class="box-sm orange"></div>
+        <div class="box-sm yellow "></div>
+        <div class="box-sm green "></div>
+        <div class="box-sm blue "></div>
+        <div class="box-sm purple"></div>
+    </div>
+
+    
+    
+    <div id="artalk"></div>
+    
+    <script>
+        Artalk.init({
+            el: '#artalk',
+            server: 'https:\/\/artalk.opensl.life',
+            site: 'opensl',
+        })
+        
+        window.addEventListener("onColorSchemeChange", (e) => {
+            Artalk.setDarkMode(document.documentElement.dataset.scheme=="dark");
+        })
+
+    </script>
+</section>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2023 随记 | note to Think
+    </section>
+    
+    <section class="powerby">
+        
+            内容是由智能博客生成器生产 powered by ChatGGPTT <br/>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

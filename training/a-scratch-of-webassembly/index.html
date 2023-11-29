@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Warning &amp;ldquo;本页面可能的刷新慢问题&amp;rdquo; 使用webassembly技术生成的富文本包含的js和wasm资源可能会由于服务器下载速度限制出现加载慢问题，如果刷新慢请耐心等待，如果显示空白错误请重新刷新尝试 写在前面 最早接触这个词时候大概是2020年左右，当时在某个网站上看'>
+<title>web assembly初探</title>
+
+<link rel='canonical' href='https://62742a40.github.io/training/a-scratch-of-webassembly/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='web assembly初探'>
+<meta property='og:description' content='Warning &amp;ldquo;本页面可能的刷新慢问题&amp;rdquo; 使用webassembly技术生成的富文本包含的js和wasm资源可能会由于服务器下载速度限制出现加载慢问题，如果刷新慢请耐心等待，如果显示空白错误请重新刷新尝试 写在前面 最早接触这个词时候大概是2020年左右，当时在某个网站上看'>
+<meta property='og:url' content='https://62742a40.github.io/training/a-scratch-of-webassembly/'>
+<meta property='og:site_name' content='随记 | note to Think'>
+<meta property='og:type' content='article'><meta property='article:section' content='Tutorial' /><meta property='article:tag' content='WebAssembly' /><meta property='article:published_time' content='2023-03-04T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-03-04T00:00:00&#43;00:00'/><meta property='og:image' content='https://s.md3.cn/imgs/i/2023/11/14/65525141e7c75.jpg' />
+<meta name="twitter:title" content="web assembly初探">
+<meta name="twitter:description" content="Warning &amp;ldquo;本页面可能的刷新慢问题&amp;rdquo; 使用webassembly技术生成的富文本包含的js和wasm资源可能会由于服务器下载速度限制出现加载慢问题，如果刷新慢请耐心等待，如果显示空白错误请重新刷新尝试 写在前面 最早接触这个词时候大概是2020年左右，当时在某个网站上看"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://s.md3.cn/imgs/i/2023/11/14/65525141e7c75.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GSZF2BTH41"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GSZF2BTH41', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">随记 | note to Think</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>首页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/talktalk/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-weibo" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M19 14.127c0 3.073 -3.502 5.873 -8 5.873c-4.126 0 -8 -2.224 -8 -5.565c0 -1.78 .984 -3.737 2.7 -5.567c2.362 -2.51 5.193 -3.687 6.551 -2.238c.415 .44 .752 1.39 .749 2.062c2 -1.615 4.308 .387 3.5 2.693c1.26 .557 2.5 .538 2.5 2.742z" />
+  <path d="M15 4h1a5 5 0 0 1 5 5v1" />
+</svg>
+                
+                <span>侃侃</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/training/a-scratch-of-webassembly/">
+                
+                    <img src="https://s.md3.cn/imgs/i/2023/11/14/65525141e7c75.jpg" loading="lazy" alt="Featured image of post web assembly初探" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/notes/" >
+                notes
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/training/a-scratch-of-webassembly/">web assembly初探</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 04, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <style type="text/css">.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}</style>
+<div><svg width="0" height="0" display="none" xmlns="http://www.w3.org/2000/svg"><symbol id="tip-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></symbol><symbol id="note-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></symbol><symbol id="warning-notice" viewBox="0 0 576 512" preserveAspectRatio="xMidYMid meet"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></symbol><symbol id="info-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></symbol></svg></div><div class="notice warning" >
+<p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#warning-notice"></use></svg></span>Warning</p><p>&ldquo;本页面可能的刷新慢问题&rdquo;
+使用webassembly技术生成的富文本包含的js和wasm资源可能会由于服务器下载速度限制出现加载慢问题，如果刷新慢请耐心等待，如果显示空白错误请重新刷新尝试</p></div>
+
+<h2 id="写在前面">写在前面</h2>
+<p>最早接触这个词时候大概是2020年左右，当时在某个网站上看到了基于网页跑的xp系统，感觉还挺新奇。最近重学cv课程，想着这次一定要实现一些算法。为了在网页演示基于C、C++、Rust、WebGL实现的图像处理算法，故而啃啃该技术的一些基本用法。</p>
+<p><strong>注意：Firefox 52+ 和 Chrome 57+ 和最新版本的 Opera 已经默认启用，你也可以在 Firefox 47+ 中通过在 about:config 页面启用 javascript.options.wasm 字段获得支持，Chrome 51+ 和 Opera 38+ 可以在 chrome://flags 页面启用 Experimental WebAssembly 选项以支持 WebAssembly</strong></p>
+<p>第一例比较简单，就是将一个基于c的printf函数的命令行模式程序编译到web assembly。
+<iframe loading="lazy" src="https://s.md3.cn/dl/cdn/../wasm/hello-WebAssembly/hello2.html"
+    style="overflow:hidden" scrolling="no" width="100%" height="100%" marginheight="0"
+    frameborder="0"></iframe></p>
+<p>第二例是一个斐波那契数列生成器，使用c函数实现生成，js读取返回值
+<iframe loading="lazy" src="https://s.md3.cn/dl/cdn/../wasm/hello-WebAssembly/fib.html"
+    style="overflow:hidden" scrolling="no" width="100%" height="100%" marginheight="0"
+    frameborder="0"></iframe></p>
+<p>第三例是一个使用OpenGL实现的canvas功能的例子，渲染为120帧
+<iframe loading="lazy" src="https://s.md3.cn/dl/cdn/../wasm/hello-WebAssembly/floating_rects.html"
+    style="overflow:hidden" scrolling="no" width="100%" height="100%" marginheight="0"
+    frameborder="0"></iframe></p>
+<p>上面的demo借鉴了以下的几个文章或者代码：</p>
+<p>[1]. <a class="link" href="https://github.com/timhutton/sdl-canvas-wasm.git"  target="_blank" rel="noopener"
+    >https://github.com/timhutton/sdl-canvas-wasm.git</a></p>
+<p>[2]. <a class="link" href="https://go.opensl.life/X9pS8"  target="_blank" rel="noopener"
+    >https://go.opensl.life/X9pS8</a></p>
+<p>[3]. <a class="link" href="https://go.opensl.life/mfrfW"  target="_blank" rel="noopener"
+    >https://go.opensl.life/mfrfW</a></p>
+<p>[4]. <a class="link" href="https://go.opensl.life/12WYb"  target="_blank" rel="noopener"
+    >https://go.opensl.life/12WYb</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/webassembly/">WebAssembly</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.15.6/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+<section>
+    <link href="https://cdn.bootcdn.net/ajax/libs/artalk/2.6.4/Artalk.css" rel="stylesheet">
+    <link href="/css/slider.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/artalk/2.6.4/Artalk.js"></script>
+    <p id="comment-message">请在评论前阅读我们的<a href="/privacy-policy/" target="_blank" rel="noopener noreferrer"
+            class="policy-link">评论政策</a></p>
+
+    <div class="comment-slide-box">
+        <div class="box-sm red"></div>
+        <div class="box-sm orange"></div>
+        <div class="box-sm yellow "></div>
+        <div class="box-sm green "></div>
+        <div class="box-sm blue "></div>
+        <div class="box-sm purple"></div>
+    </div>
+
+    
+    
+    <div id="artalk"></div>
+    
+    <script>
+        Artalk.init({
+            el: '#artalk',
+            server: 'https:\/\/artalk.opensl.life',
+            site: 'opensl',
+        })
+        
+        window.addEventListener("onColorSchemeChange", (e) => {
+            Artalk.setDarkMode(document.documentElement.dataset.scheme=="dark");
+        })
+
+    </script>
+</section>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2019 - 
+        
+        2023 随记 | note to Think
+    </section>
+    
+    <section class="powerby">
+        
+            内容是由智能博客生成器生产 powered by ChatGGPTT <br/>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.bootcdn.net/ajax/libs/photoswipe/4.1.3/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

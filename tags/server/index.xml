@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>server on 随记 | note to Think</title>
+        <link>https://62742a40.github.io/tags/server/</link>
+        <description>Recent content in server on 随记 | note to Think</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <lastBuildDate>Mon, 02 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://62742a40.github.io/tags/server/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>服务器配置备忘录</title>
+        <link>https://62742a40.github.io/training/server-setting/</link>
+        <pubDate>Mon, 02 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://62742a40.github.io/training/server-setting/</guid>
+        <description>&lt;img src="https://s.md3.cn/imgs/i/2023/11/13/6552429aa90ef.jpg" alt="Featured image of post 服务器配置备忘录" /&gt;&lt;p&gt;写这篇文章的目的是我有个囤服务器的坏毛病，服务器越来越多，每次配置服务器总是有一些重复的步骤，这里将它们记录下来，以备下次使用。&lt;/p&gt;
+&lt;p&gt;（最近心水了Ansible这个工具，不过还没学会，所以这个教程还是用得上的）&lt;/p&gt;
+&lt;h2 id=&#34;centos新建用户并赋予sudo权限&#34;&gt;Centos新建用户并赋予SUDO权限&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nusername&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;newuser
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;useradd -m -s /bin/bash $nusername
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo usermod -a -G wheel $nusername
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;passwd $nusername
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;centos防火墙配置&#34;&gt;Centos防火墙配置&lt;/h2&gt;
+&lt;p&gt;防火墙配置&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo yum install firewalld
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo firewall-cmd --state &lt;span style=&#34;color:#75715e&#34;&gt;#防火墙状态 running &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl start firewalld
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl enable firewalld
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;打开端口
+上面说明都是通过服务的配置文件打开端口，但是有时候不是所有服务都带有配置文件。在这种情况下，您有两种选择。您可以打开指定的端口，也可以定义新的FirewallD服务。&lt;/p&gt;
+&lt;p&gt;例如，Plex服务器监听TCP协议32400端口，可使用&amp;ndash;add-port=选项在当前会话的public区域中打开32400端口。&lt;/p&gt;
+&lt;p&gt;协议可以是tcp或udp。要验证是否已成功添加32400端口，请使用&amp;ndash;list-ports选项列出已打开的端口。&lt;/p&gt;
+&lt;p&gt;要在重新启动后使端口32400保持打开状态，请使用&amp;ndash;permanent选项运行相同的命令，将规则添加到配置文件中。&lt;/p&gt;
+&lt;p&gt;删除端口规则的语法与添加端口时的语法相同。只需使用&amp;ndash;remove-port选项即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo firewall-cmd --zone&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;public --add-port&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;32400/tcp &lt;span style=&#34;color:#75715e&#34;&gt;#打开端口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo firewall-cmd --zone&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;public --list-ports &lt;span style=&#34;color:#75715e&#34;&gt;#列出&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo firewall-cmd --zone&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;public --remove-port&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;32400/tcp &lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;参考链接：
+[1]. &lt;a class=&#34;link&#34; href=&#34;https://go.opensl.life/gV4IY&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://go.opensl.life/gV4IY&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

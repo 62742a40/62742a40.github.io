@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>WebAssembly on 随记 | note to Think</title>
+        <link>https://62742a40.github.io/tags/webassembly/</link>
+        <description>Recent content in WebAssembly on 随记 | note to Think</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-CN</language>
+        <lastBuildDate>Sat, 04 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://62742a40.github.io/tags/webassembly/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>web assembly初探</title>
+        <link>https://62742a40.github.io/training/a-scratch-of-webassembly/</link>
+        <pubDate>Sat, 04 Mar 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://62742a40.github.io/training/a-scratch-of-webassembly/</guid>
+        <description>&lt;img src="https://s.md3.cn/imgs/i/2023/11/14/65525141e7c75.jpg" alt="Featured image of post web assembly初探" /&gt;&lt;style type=&#34;text/css&#34;&gt;.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}&lt;/style&gt;
+&lt;div&gt;&lt;svg width=&#34;0&#34; height=&#34;0&#34; display=&#34;none&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&lt;symbol id=&#34;tip-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;note-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;warning-notice&#34; viewBox=&#34;0 0 576 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;info-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z&#34;/&gt;&lt;/symbol&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;&amp;ldquo;本页面可能的刷新慢问题&amp;rdquo;
+使用webassembly技术生成的富文本包含的js和wasm资源可能会由于服务器下载速度限制出现加载慢问题，如果刷新慢请耐心等待，如果显示空白错误请重新刷新尝试&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
+&lt;p&gt;最早接触这个词时候大概是2020年左右，当时在某个网站上看到了基于网页跑的xp系统，感觉还挺新奇。最近重学cv课程，想着这次一定要实现一些算法。为了在网页演示基于C、C++、Rust、WebGL实现的图像处理算法，故而啃啃该技术的一些基本用法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：Firefox 52+ 和 Chrome 57+ 和最新版本的 Opera 已经默认启用，你也可以在 Firefox 47+ 中通过在 about:config 页面启用 javascript.options.wasm 字段获得支持，Chrome 51+ 和 Opera 38+ 可以在 chrome://flags 页面启用 Experimental WebAssembly 选项以支持 WebAssembly&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;第一例比较简单，就是将一个基于c的printf函数的命令行模式程序编译到web assembly。
+&lt;iframe loading=&#34;lazy&#34; src=&#34;https://s.md3.cn/dl/cdn/../wasm/hello-WebAssembly/hello2.html&#34;
+    style=&#34;overflow:hidden&#34; scrolling=&#34;no&#34; width=&#34;100%&#34; height=&#34;100%&#34; marginheight=&#34;0&#34;
+    frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;&lt;/p&gt;
+&lt;p&gt;第二例是一个斐波那契数列生成器，使用c函数实现生成，js读取返回值
+&lt;iframe loading=&#34;lazy&#34; src=&#34;https://s.md3.cn/dl/cdn/../wasm/hello-WebAssembly/fib.html&#34;
+    style=&#34;overflow:hidden&#34; scrolling=&#34;no&#34; width=&#34;100%&#34; height=&#34;100%&#34; marginheight=&#34;0&#34;
+    frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;&lt;/p&gt;
+&lt;p&gt;第三例是一个使用OpenGL实现的canvas功能的例子，渲染为120帧
+&lt;iframe loading=&#34;lazy&#34; src=&#34;https://s.md3.cn/dl/cdn/../wasm/hello-WebAssembly/floating_rects.html&#34;
+    style=&#34;overflow:hidden&#34; scrolling=&#34;no&#34; width=&#34;100%&#34; height=&#34;100%&#34; marginheight=&#34;0&#34;
+    frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;&lt;/p&gt;
+&lt;p&gt;上面的demo借鉴了以下的几个文章或者代码：&lt;/p&gt;
+&lt;p&gt;[1]. &lt;a class=&#34;link&#34; href=&#34;https://github.com/timhutton/sdl-canvas-wasm.git&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/timhutton/sdl-canvas-wasm.git&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[2]. &lt;a class=&#34;link&#34; href=&#34;https://go.opensl.life/X9pS8&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://go.opensl.life/X9pS8&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[3]. &lt;a class=&#34;link&#34; href=&#34;https://go.opensl.life/mfrfW&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://go.opensl.life/mfrfW&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[4]. &lt;a class=&#34;link&#34; href=&#34;https://go.opensl.life/12WYb&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://go.opensl.life/12WYb&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
